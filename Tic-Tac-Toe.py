@@ -1,3 +1,6 @@
+### ----- TIC-TAC-TOE using MIN-MAX Algorithm -------
+
+# Function to display the current state of the tic-tac-toe board
 def ConstBoard(board):
     print("\n\nCurrent state of the board:\n\n")
     for i in range(0, 9):
@@ -11,6 +14,7 @@ def ConstBoard(board):
             print(" O ", end=" ")
     print("\n\n")
 
+# Function for Player 1's turn in a single-player game
 def User1Turn(board, player_symbol):
     while True:
         pos = input(f"\n\nEnter '{player_symbol}' position from [1, 2, 3, ..., 9]: ")
@@ -24,6 +28,7 @@ def User1Turn(board, player_symbol):
         except ValueError:
             print("\n\nInvalid input. Enter a number between 1 and 9.")
 
+# Function for Player 2's turn in a multi-player game
 def User2Turn(board):
     while True:
         pos = input("\n\nEnter 'O' position from [1, 2, 3, ..., 9]: ")
@@ -37,6 +42,7 @@ def User2Turn(board):
         except ValueError:
             print("\n\nInvalid input. Enter a number between 1 and 9.")
 
+# Function to analyze the current state of the board and check for a win
 def analyzeBoard(board):
     cb = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     for i in range(0, 8):
@@ -44,6 +50,7 @@ def analyzeBoard(board):
             return board[cb[i][0]]
     return 0
 
+# Function to implement the minimax algorithm for the computer's move
 def minmax(board, player):
     x = analyzeBoard(board)
     if x != 0:
@@ -62,6 +69,7 @@ def minmax(board, player):
         return 0
     return value
 
+# Function for the computer's turn in a single-player game
 def CompTurn(board):
     pos = -1
     value = -2
@@ -75,7 +83,7 @@ def CompTurn(board):
                 pos = i
     board[pos] = 1
 
-
+# Main game loop
 def main():
     while True:
         choice = input("_____WELCOME TO TIC-TAC-TOE_____\n\nHello User...!!! Enter '1' for Single-Player and '2' for Multi-Player: ")
@@ -139,7 +147,8 @@ def main():
                 print("\n\nHurrayy..!!! You ('O') win! Computer ('X') lost.")
             else:
                 print("\n\nOops..!!! Computer ('O') wins. You ('X') lost.")
-        
+                
+# If player wish to play again or no         
         while True:
             play_again = input("Do you want to play again? (yes/no): ").lower()
             if play_again == "yes":
@@ -149,4 +158,5 @@ def main():
             else:
                 print("Invalid input. Please enter 'yes' or 'no'.")
 
+# Start the game by calling the main function
 main()
